@@ -8,8 +8,7 @@ export default function DashboardLayout({
   return (
     <div id="dashboardLayout" className="">
       <Sidebar />
-      <div id="dashboardContentSafe" className="ml-24">
-        Dashboard Layout
+      <div id="dashboardContentSafe" className="sm:ml-24">
         {children}
       </div>
     </div>

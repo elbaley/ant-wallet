@@ -9,7 +9,7 @@ const Sidebar = ({}: SidebarProps) => {
   const pathname = usePathname();
 
   return (
-    <aside className="flex flex-col h-screen w-24 fixed bg-white rounded-tr-[1.25rem] rounded-br-[1.25rem] pt-10 ">
+    <aside className="sm:visible invisible flex flex-col h-screen w-24 fixed bg-white rounded-tr-[1.25rem] rounded-br-[1.25rem] pt-10 mr-24">
       <Link href="/home">
         <img
           className="h-9 aspect-square hover:opacity-80 mx-auto "
