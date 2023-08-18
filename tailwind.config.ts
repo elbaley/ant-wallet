@@ -9,6 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        sidebarBtn: {
+          active: "#000000",
+          inactive: "#CCCCCC",
+        },
         actions: {
           danger: "#FF3A29",
           info: "#02A0FC",
