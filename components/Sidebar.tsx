@@ -5,8 +5,11 @@ import { IconType } from "react-icons";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { sidebarIcons, sidebarLinks } from "@/lib/sidebarLinks";
+import { signout } from "@/lib/api";
+import { useRouter } from "next/navigation";
 const Sidebar = ({}: SidebarProps) => {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <aside className="sm:visible invisible flex flex-col h-screen w-24 fixed bg-white rounded-tr-[1.25rem] rounded-br-[1.25rem] pt-10 mr-24">
@@ -17,6 +20,13 @@ const Sidebar = ({}: SidebarProps) => {
         />
       </Link>
       <hr className="w-[70px] mx-auto bg-stone-300 mt-7" />
+      {/* TODO Turn this into a user profile image modal component*/}
+      <button
+        onClick={async () => await signout().then(() => router.push("/"))}
+      >
+        Signout
+      </button>
+
       <div
         id="sidebar__container"
         className="flex-1 flex flex-col gap-9 items-center mt-8 "
