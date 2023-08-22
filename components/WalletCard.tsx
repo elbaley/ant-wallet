@@ -2,7 +2,7 @@ import { IoWallet } from "react-icons/io5";
 
 interface WalletCardProps {
   name: string;
-  amount: number;
+  amount: number | null;
 }
 
 const WalletCard = ({ name, amount }: WalletCardProps) => {
@@ -12,7 +12,13 @@ const WalletCard = ({ name, amount }: WalletCardProps) => {
       <div>
         <h2>{name}</h2>
         <h4>Cash</h4>
-        <h1>${amount}</h1>
+        {amount ? (
+          <h1>
+            {amount < 0 && "-"}${Math.abs(amount)}
+          </h1>
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </div>
   );

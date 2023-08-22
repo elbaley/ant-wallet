@@ -21,7 +21,8 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
   console.log(pathname);
   if (
     pathname.startsWith("/_next") ||
-    pathname.startsWith("/api") ||
+    pathname.startsWith("/api/signin") ||
+    pathname.startsWith("/api/register") ||
     pathname.startsWith("/static") ||
     pathname.startsWith("/signin") ||
     pathname.startsWith("/register") ||

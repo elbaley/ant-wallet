@@ -6,6 +6,7 @@ import {
   RequestCookie,
   RequestCookies,
 } from "next/dist/compiled/@edge-runtime/cookies";
+import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 export const hashPassword = (password: string) => bcrypt.hash(password, 10);
 
@@ -36,7 +37,7 @@ export const validateJWT = async (jwt: string) => {
   return payload.payload as Partial<User>;
 };
 
-export const getUserFromCookie = async (cookies: RequestCookies) => {
+export const getUserFromCookie = async (cookies: ReadonlyRequestCookies) => {
   const jwt = cookies.get(process.env.COOKIE_NAME as string) as RequestCookie;
   const { id } = await validateJWT(jwt.value as string);
 

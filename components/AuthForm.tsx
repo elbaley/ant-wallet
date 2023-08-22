@@ -1,6 +1,8 @@
 "use client";
 import Input from "@/components/Input";
+import { useUser } from "@/context/authProvider";
 import { register, signin } from "@/lib/api";
+import { User } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -26,6 +28,7 @@ const signinContent = {
 };
 
 const AuthForm = ({ mode }: AuthFormProps) => {
+  const { user, setUser } = useUser();
   const router = useRouter();
   const content = mode === "register" ? registerContent : signinContent;
   const initial = {
@@ -40,9 +43,21 @@ const AuthForm = ({ mode }: AuthFormProps) => {
     e.preventDefault();
 
     if (mode === "register") {
-      await register(formState);
+      await register(formState)
+        .then((user) => {
+          setUser(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      await signin(formState);
+      await signin(formState)
+        .then((user) => {
+          setUser(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     setFormState(initial);

@@ -28,8 +28,9 @@ export const customFetch = async ({
   }
 
   if (json) {
+    console.log("response is json!");
     const data = await res.json();
-    return data.data;
+    return data;
   }
 };
 
@@ -38,7 +39,7 @@ export const register = async (user: Partial<User>) => {
     url: "/api/register",
     method: "POST",
     body: user,
-    json: false,
+    json: true,
   });
 };
 
@@ -47,7 +48,7 @@ export const signin = async (user: Partial<User>) => {
     url: "/api/signin",
     method: "POST",
     body: user,
-    json: false,
+    json: true,
   });
 };
 export const signout = async () => {
@@ -55,5 +56,17 @@ export const signout = async () => {
     url: "/api/signout",
     method: "POST",
     json: false,
+  });
+};
+
+export const getTransactionsData = async (from?: string, to?: string) => {
+  let apiURL = "/api/transactions";
+  if (from && to) {
+    apiURL += `?from=${from}&to=${to}`;
+  }
+  return customFetch({
+    url: apiURL,
+    method: "GET",
+    json: true,
   });
 };
