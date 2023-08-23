@@ -13,7 +13,7 @@ function formatDate(date: Date) {
 }
 
 const TransactionMonth = ({ transactions }: TransactionMonthProps) => {
-  const monthName = format(new Date(transactions[0].date), 'LLLL yyyy')
+  const monthName = format(new Date(transactions[0].date), "LLLL yyyy");
   return (
     <div className="max-w-4xl">
       <h2>{monthName}</h2>
@@ -27,10 +27,11 @@ const TransactionMonth = ({ transactions }: TransactionMonthProps) => {
             <span>{transaction.category}</span>
             <span>{transaction.description}</span>
             <span
-              className={`font-bold ml-auto ${transaction.type === "EXPENSE"
-                ? "text-actions-danger"
-                : "text-actions-success"
-                }`}
+              className={`font-bold ml-auto ${
+                transaction.type === "EXPENSE"
+                  ? "text-actions-danger"
+                  : "text-actions-success"
+              }`}
             >
               {transaction.type === "EXPENSE" ? "-" : "+"}$
               {Math.abs(transaction.amount)}

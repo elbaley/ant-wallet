@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
   // delete JWT cookie if there is one
@@ -10,7 +10,6 @@ export async function POST(req: NextRequest) {
   }
   const url = req.nextUrl.clone();
   url.pathname = "/";
-  console.log("REDIRECTING TO:", url);
   return new Response("Signed out.", {
     status: 200,
     statusText: "Signed out",

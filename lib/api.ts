@@ -4,18 +4,21 @@ type CustomFetchProps = {
   url: string;
   method: "POST" | "GET" | "PUT" | "PATCH";
   body?: Partial<User> | Partial<Transaction>;
+  cache?: RequestCache;
   json?: boolean;
 };
 export const customFetch = async ({
   url,
   method,
   body,
+  cache = "force-cache",
   json = true,
 }: CustomFetchProps) => {
   const res = await fetch(url, {
     method,
     // adds a body and sets it to body if body is truthy otherwise it wont add body
     ...(body && { body: JSON.stringify(body) }),
+    cache,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -28,7 +31,6 @@ export const customFetch = async ({
   }
 
   if (json) {
-    console.log("response is json!");
     const data = await res.json();
     return data;
   }
@@ -68,5 +70,16 @@ export const getTransactionsData = async (from?: string, to?: string) => {
     url: apiURL,
     method: "GET",
     json: true,
+    cache: "no-store",
+  });
+};
+
+export const addTransaction = async (transaction: Partial<Transaction>) => {
+  return customFetch({
+    url: "/api/transactions",
+    method: "POST",
+    body: transaction,
+    json: true,
+    cache: "no-store",
   });
 };

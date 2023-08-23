@@ -12,6 +12,7 @@
     "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@prisma/client": "^5.1.1",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie": "^0.5.1",

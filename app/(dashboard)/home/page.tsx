@@ -1,4 +1,4 @@
-interface HomePageProps { }
+interface HomePageProps {}
 import CallToAction from "@/components/CallToAction";
 import CtaSkeleton from "@/components/CtaSkeleton";
 import WalletCard from "@/components/WalletCard";
@@ -31,20 +31,18 @@ const getData = async () => {
 
   return { wallets, totalAmount: totalAmount._sum.amount };
 };
-const HomePage = async ({ }: HomePageProps) => {
+const HomePage = async ({}: HomePageProps) => {
   const { wallets, totalAmount } = await getData();
 
   return (
     <main className="pl-10 pt-9 ">
       <h1 className="pb-3">Wallet</h1>
       {wallets?.map((wallet) => (
-        <WalletCard name={wallet.name} amount={totalAmount} />
+        <WalletCard key={wallet.id} name={wallet.name} amount={totalAmount} />
       ))}
       <Suspense fallback={<CtaSkeleton />}>
         <Link href="/transactions">
-
           <CallToAction />
-
         </Link>
       </Suspense>
     </main>

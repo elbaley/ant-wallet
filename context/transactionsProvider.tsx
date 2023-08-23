@@ -1,7 +1,6 @@
 "use client";
 import { getTransactionsData } from "@/lib/api";
 import { Transaction } from "@prisma/client";
-import { useRouter } from "next/navigation";
 import {
   Dispatch,
   ReactNode,
@@ -20,6 +19,7 @@ interface TransactionsState {
 }
 
 interface TransactionsContextValues {
+  refetchTransactions: () => void;
   transactions: TransactionsState;
   setTransactions: Dispatch<SetStateAction<TransactionsState>>;
 }
@@ -46,8 +46,7 @@ export const TransactionsContextProvider = ({
     to: toFilter,
   });
 
-  // when from - to filter changes update refetch the transactions
-  useEffect(() => {
+  const refetchTransactions = () => {
     getTransactionsData(transactions.from, transactions.to).then((response) => {
       setTransactions((oldTransactions) => {
         return {
@@ -57,10 +56,17 @@ export const TransactionsContextProvider = ({
         };
       });
     });
+  };
+
+  // when from - to filter changes update refetch the transactions
+  useEffect(() => {
+    refetchTransactions();
   }, [transactions.from, transactions.to]);
 
   return (
-    <TransactionsContext.Provider value={{ transactions, setTransactions }}>
+    <TransactionsContext.Provider
+      value={{ transactions, setTransactions, refetchTransactions }}
+    >
       {children}
     </TransactionsContext.Provider>
   );

@@ -18,7 +18,6 @@ const verifyJWT = async (jwt: string) => {
 
 export default async function middleware(req: NextRequest, res: NextResponse) {
   const { pathname } = req.nextUrl;
-  console.log(pathname);
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api/signin") ||

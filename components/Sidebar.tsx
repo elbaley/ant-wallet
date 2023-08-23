@@ -37,6 +37,7 @@ const Sidebar = ({}: SidebarProps) => {
           const isSettings = link.label === "Settings";
           return (
             <Link
+              key={link.href}
               href={link.href}
               className={`${isSettings && "mt-auto mb-8 "}`}
             >

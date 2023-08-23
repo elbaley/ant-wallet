@@ -1,12 +1,10 @@
-"use client";
-
 import { useTransactions } from "@/context/transactionsProvider";
 import { Transaction } from "@prisma/client";
 import TransactionMonth from "./TransactionMonth";
 
-interface TransactionListProps { }
+interface TransactionListProps {}
 
-const TransactionList = ({ }: TransactionListProps) => {
+const TransactionList = ({}: TransactionListProps) => {
   const { transactions } = useTransactions();
   const transactionsGroupedByMonth = transactions.transactions.reduce(
     (acc: { [key: string]: Transaction[] }, current) => {
@@ -23,11 +21,10 @@ const TransactionList = ({ }: TransactionListProps) => {
     },
     {},
   );
-
   const transactionMonthComponents = Object.entries(
     transactionsGroupedByMonth,
   ).map(([month, transactionsInMonth]) => (
-    <TransactionMonth transactions={transactionsInMonth} />
+    <TransactionMonth key={month} transactions={transactionsInMonth} />
   ));
 
   return <div className="mt-7">{transactionMonthComponents}</div>;
