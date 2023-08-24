@@ -1,3 +1,4 @@
+"use client";
 import { useTransactions } from "@/context/transactionsProvider";
 import { Transaction } from "@prisma/client";
 import TransactionMonth from "./TransactionMonth";

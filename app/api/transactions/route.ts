@@ -1,6 +1,5 @@
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { Transaction, User } from "@prisma/client";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";

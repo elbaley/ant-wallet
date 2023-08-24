@@ -5,7 +5,7 @@ interface InfoCardProps {
 
 const InfoCard = ({ name, amount }: InfoCardProps) => {
   return (
-    <div className="bg-white max-w-[220px] w-full rounded-xl shadow-md pt-8 pl-5 pb-5 flex flex-col gap-4">
+    <div className="bg-white min-w-[180px] max-w-[220px] w-full rounded-xl shadow-md pt-8 pl-5 pb-5 flex flex-col gap-4">
       <span className="text-xl">{name}</span>
       {amount || amount === 0 ? (
         <span

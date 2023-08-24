@@ -1,3 +1,4 @@
+"use client";
 import InfoCard from "@/components/InfoCard";
 import { useTransactions } from "@/context/transactionsProvider";
 import { useEffect, useState } from "react";
@@ -46,7 +47,7 @@ const SummaryCards = ({}: SummaryCardsProps) => {
   }, [transactions]);
 
   return (
-    <div className="flex flex-wrap gap-2 py-3">
+    <div className="flex gap-2 py-3 overflow-x-scroll">
       <InfoCard name="Current Balance" amount={summaryValues.currentBalance} />
       <InfoCard name="Period Change" amount={summaryValues.periodChange} />
       <InfoCard name="Period Expenses" amount={summaryValues.periodExpenses} />

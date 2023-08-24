@@ -1,8 +1,6 @@
 "use client";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { IoChevronDown, IoHome, IoPerson, IoSettings } from "react-icons/io5";
-import { format } from "date-fns";
 import AddTransactionForm from "./AddTransactionForm";
 
 // example
