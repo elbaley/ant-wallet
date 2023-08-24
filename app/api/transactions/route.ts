@@ -75,13 +75,17 @@ export async function POST(req: NextRequest) {
   const newTransaction = await db.transaction.create({
     data: {
       ...zodResponse.data,
+      amount:
+        zodResponse.data.type === "EXPENSE"
+          ? zodResponse.data.amount * -1
+          : zodResponse.data.amount,
       walletId: walletId!.id,
       ownerId: user.id,
     },
   });
 
-  return new Response("Transaction added.", {
+  return NextResponse.json(newTransaction, {
     status: 201,
-    statusText: "Transaction added",
+    statusText: "Transaction added.",
   });
 }
