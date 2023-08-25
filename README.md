@@ -3,7 +3,7 @@ A NextJS project that lets users to save their expenses/incomes to see where the
 
 ## Technologies 
 - NextJS
-- Redux Toolkit
+- React Context
 - Headless UI
 
 ## Getting Started
