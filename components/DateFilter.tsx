@@ -31,7 +31,7 @@ const DateFilter = ({}: DateFilterProps) => {
     setEndDate(end);
   };
   return (
-    <div className="flex gap-3 items-center mr-5 ">
+    <div className="flex gap-3 items-center mr-5 z-10">
       <button
         onClick={() => {
           setStartDate(addMonths(startDate, -1));
