@@ -5,12 +5,9 @@ import { IconType } from "react-icons";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { sidebarIcons, sidebarLinks } from "@/lib/sidebarLinks";
-import { signout } from "@/lib/api";
-import { useRouter } from "next/navigation";
 import Logo from "./Logo";
 const Sidebar = ({}: SidebarProps) => {
   const pathname = usePathname();
-  const router = useRouter();
 
   return (
     <aside className="sm:visible invisible flex flex-col h-screen w-24 fixed bg-white rounded-tr-[1.25rem] rounded-br-[1.25rem] pt-10 mr-24">

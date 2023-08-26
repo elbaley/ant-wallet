@@ -6,9 +6,10 @@ import { IoPerson } from "react-icons/io5";
 import { signout } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { sidebarIcons, sidebarLinks } from "@/lib/sidebarLinks";
+import { IconType } from "react-icons";
 function ProfileMenu() {
   const router = useRouter();
-
   return (
     <div className="fixed sm:absolute right-0 mr-4 z-50 mt-1">
       <Menu as="div" className="relative inline-block text-left">
@@ -31,6 +32,21 @@ function ProfileMenu() {
         >
           <Menu.Items className="absolute right-0  w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1">
+              {sidebarLinks
+                .filter((link) => link.href !== "/profile")
+                .map((link) => {
+                  const Icon: IconType = sidebarIcons[link.icon];
+                  return (
+                    <Menu.Item>
+                      <Link className="sm:hidden" href={link.href}>
+                        <button className="hover:bg-gray-400 hover:text-white group flex w-full items-center rounded-md px-2 py-2 text-sm">
+                          <Icon className="mr-2 h-5 w-5 text-black" />
+                          {link.label}
+                        </button>
+                      </Link>
+                    </Menu.Item>
+                  );
+                })}
               <Menu.Item>
                 <Link href="/profile">
                   <button className="hover:bg-gray-400 hover:text-white group flex w-full items-center rounded-md px-2 py-2 text-sm">
