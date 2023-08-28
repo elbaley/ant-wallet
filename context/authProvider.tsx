@@ -1,4 +1,5 @@
 "use client";
+import { getUserFromCookie } from "@/lib/auth";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import {
@@ -7,6 +8,7 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -19,7 +21,21 @@ type UserContextValues = {
 const UserContext = createContext({} as UserContextValues);
 
 export const UserContextProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<AuthUser | null>(null);
+  console.log("user context running...");
+  const [user, setUser] = useState<AuthUser | null>(() => {
+    // Try to load the user from localStorage
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  useEffect(() => {
+    // Save the user to localStorage whenever it changes
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

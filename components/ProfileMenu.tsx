@@ -8,8 +8,10 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { sidebarIcons, sidebarLinks } from "@/lib/sidebarLinks";
 import { IconType } from "react-icons";
+import { useUser } from "@/context/authProvider";
 function ProfileMenu() {
   const router = useRouter();
+  const { setUser } = useUser();
   return (
     <div className="fixed sm:absolute right-0 mr-4 z-50 mt-1">
       <Menu as="div" className="relative inline-block text-left">
@@ -37,7 +39,7 @@ function ProfileMenu() {
                 .map((link) => {
                   const Icon: IconType = sidebarIcons[link.icon];
                   return (
-                    <Menu.Item>
+                    <Menu.Item key={link.label + "-profile-menu"}>
                       <Link className="sm:hidden" href={link.href}>
                         <button className="hover:bg-gray-400 hover:text-white group flex w-full items-center rounded-md px-2 py-2 text-sm">
                           <Icon className="mr-2 h-5 w-5 text-black" />
@@ -60,7 +62,11 @@ function ProfileMenu() {
               <Menu.Item>
                 <button
                   onClick={async () =>
-                    await signout().then(() => router.push("/"))
+                    await signout().then(() => {
+                      // remove the user from the localStorage
+                      setUser(null);
+                      router.replace("/");
+                    })
                   }
                   className="hover:bg-gray-400 hover:text-white group flex w-full items-center rounded-md px-2 py-2 text-sm"
                 >

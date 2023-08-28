@@ -45,6 +45,15 @@ export const register = async (user: Partial<User>) => {
   });
 };
 
+export const updateUser = async (user: Partial<User>) => {
+  return customFetch({
+    url: "/api/updateuser",
+    method: "PUT",
+    body: user,
+    json: true,
+  });
+};
+
 export const signin = async (user: Partial<User>) => {
   return customFetch({
     url: "/api/signin",
