@@ -21,11 +21,14 @@ type UserContextValues = {
 const UserContext = createContext({} as UserContextValues);
 
 export const UserContextProvider = ({ children }: { children: ReactNode }) => {
-  console.log("user context running...");
   const [user, setUser] = useState<AuthUser | null>(() => {
     // Try to load the user from localStorage
-    const storedUser = localStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : null;
+    let storedUser = null;
+    if (typeof window !== "undefined") {
+      storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser) : null;
+    }
+    return null;
   });
 
   useEffect(() => {

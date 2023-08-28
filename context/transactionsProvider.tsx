@@ -11,6 +11,10 @@ import {
   useState,
 } from "react";
 
+// TODO instead of harcoded currency list use Intl API!
+export const CURRENCY_SYMBOLS = ["$", "€", "¥", "£", "₺"] as const;
+export type TCurrencySymbol = (typeof CURRENCY_SYMBOLS)[number];
+
 interface TransactionsState {
   transactions: Transaction[];
   from: string;
@@ -22,6 +26,8 @@ interface TransactionsContextValues {
   refetchTransactions: () => void;
   transactions: TransactionsState;
   setTransactions: Dispatch<SetStateAction<TransactionsState>>;
+  currencySymbol: TCurrencySymbol;
+  setCurrencySymbol: Dispatch<SetStateAction<TCurrencySymbol>>;
 }
 
 const TransactionsContext = createContext({} as TransactionsContextValues);
@@ -39,6 +45,7 @@ export const TransactionsContextProvider = ({
   const fromFilter = `${year}-${monthWithZero}-01`;
   const toFilter = `${year}-${monthWithZero}-${lastDayOfMonth}`;
 
+  const [currencySymbol, setCurrencySymbol] = useState<TCurrencySymbol>("₺");
   const [transactions, setTransactions] = useState<TransactionsState>({
     transactions: [],
     totalAmount: null,
@@ -65,7 +72,13 @@ export const TransactionsContextProvider = ({
 
   return (
     <TransactionsContext.Provider
-      value={{ transactions, setTransactions, refetchTransactions }}
+      value={{
+        transactions,
+        setTransactions,
+        refetchTransactions,
+        currencySymbol,
+        setCurrencySymbol,
+      }}
     >
       {children}
     </TransactionsContext.Provider>
