@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
   const schema = z.object({
     type: z.enum(["EXPENSE", "INCOME"]),
     category: z.string().min(2),
-    description: z.string().min(2),
+    description: z.string().min(2).optional(),
     amount: z.number().min(1),
     date: z.string().datetime(),
   });
