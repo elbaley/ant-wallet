@@ -20,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={dmSans.className + " bg-grey"}>
+      <body
+        className={
+          dmSans.className + " bg-grey dark:bg-darkPrimary dark:text-white"
+        }
+      >
         <UserContextProvider>
           <TransactionsContextProvider>{children}</TransactionsContextProvider>
         </UserContextProvider>

@@ -21,11 +21,11 @@ const TransactionMonth = ({ transactions }: TransactionMonthProps) => {
         return (
           <div
             key={transaction.id}
-            className="bg-white rounded-lg text-xl px-4 py-4 flex gap-3 mt-2 items-center"
+            className="bg-white dark:bg-darkSecondary rounded-lg text-xl px-4 py-4 flex gap-3 mt-2 items-center shadow-sm"
           >
-            <div className="block rounded-t  bg-white text-center w-16 h-16">
+            <div className="block rounded-t  bg-white dark:bg-darkSecondary text-center w-16 h-16">
               <div className="text-sm bg-red-500 text-white py-1">{month}</div>
-              <div className="pt-1 border-l border-r border-b">
+              <div className="pt-1 border-l border-r border-b dark:border-black">
                 <span className="text-2xl font-bold w-[2ch]">{day}</span>
               </div>
             </div>

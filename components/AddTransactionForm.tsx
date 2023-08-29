@@ -33,7 +33,7 @@ const AddTransactionForm = ({ closeModal }: AddTransactionFormProps) => {
   return (
     <form onSubmit={handleSubmit} className="mt-2">
       <label
-        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        className="block uppercase tracking-wide text-gray-700 dark:text-darkTextSecondary text-xs font-bold mb-2"
         htmlFor="transaction-type"
       >
         Type
@@ -47,7 +47,7 @@ const AddTransactionForm = ({ closeModal }: AddTransactionFormProps) => {
               type: e.target.value as TRANSACTION_TYPE,
             }))
           }
-          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          className="block appearance-none w-full bg-gray-200 dark:bg-darkSecondary dark:text-white dark:border-black border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none  focus:border-gray-500"
           id="transaction-type"
         >
           <option value="EXPENSE">Expense</option>
@@ -107,11 +107,11 @@ const AddTransactionForm = ({ closeModal }: AddTransactionFormProps) => {
       />
       <button
         type="submit"
-        className="mt-4 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        className="mt-4 inline-flex justify-center rounded-md border border-transparent bg-blue-100 dark:bg-indigo-500 px-4 py-2 text-sm font-medium text-blue-900 dark:text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
       >
         {isLoading ? (
           <div
-            className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full"
+            className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 dark:text-white rounded-full"
             role="status"
             aria-label="loading"
           >
@@ -143,7 +143,7 @@ const TransactionInput = ({
   return (
     <div className="mb-3">
       <label
-        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        className="block uppercase tracking-wide text-gray-700 dark:text-darkTextSecondary text-xs font-bold mb-2"
         htmlFor={id}
       >
         {label}
@@ -151,7 +151,7 @@ const TransactionInput = ({
       <input
         id={id}
         type={type}
-        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        className="block appearance-none w-full bg-gray-200 dark:bg-darkSecondary border border-gray-200 dark:border-black text-gray-700 dark:text-white py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500"
         onChange={onChange}
         value={value}
       />

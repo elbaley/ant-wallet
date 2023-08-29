@@ -32,7 +32,7 @@ function ProfileMenu() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0  w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute right-0  w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-darkSecondary shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1">
               {sidebarLinks
                 .filter((link) => link.href !== "/profile")
@@ -42,7 +42,7 @@ function ProfileMenu() {
                     <Menu.Item key={link.label + "-profile-menu"}>
                       <Link className="sm:hidden" href={link.href}>
                         <button className="hover:bg-gray-400 hover:text-white group flex w-full items-center rounded-md px-2 py-2 text-sm">
-                          <Icon className="mr-2 h-5 w-5 text-black" />
+                          <Icon className="mr-2 h-5 w-5 text-black dark:text-white" />
                           {link.label}
                         </button>
                       </Link>
@@ -52,7 +52,7 @@ function ProfileMenu() {
               <Menu.Item>
                 <Link href="/profile">
                   <button className="hover:bg-gray-400 hover:text-white group flex w-full items-center rounded-md px-2 py-2 text-sm">
-                    <IoPerson className="mr-2 h-5 w-5 text-black" />
+                    <IoPerson className="mr-2 h-5 w-5 text-black dark:text-white" />
                     Profile
                   </button>
                 </Link>
@@ -70,7 +70,7 @@ function ProfileMenu() {
                   }
                   className="hover:bg-gray-400 hover:text-white group flex w-full items-center rounded-md px-2 py-2 text-sm"
                 >
-                  <BiLogOut className="mr-2 h-5 w-5 text-black" />
+                  <BiLogOut className="mr-2 h-5 w-5 text-black dark:text-white" />
                   Logout
                 </button>
               </Menu.Item>

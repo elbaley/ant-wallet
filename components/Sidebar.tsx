@@ -10,9 +10,9 @@ const Sidebar = ({}: SidebarProps) => {
   const pathname = usePathname();
 
   return (
-    <aside className="sm:visible invisible flex flex-col h-screen w-24 fixed bg-white rounded-tr-[1.25rem] rounded-br-[1.25rem] pt-10 mr-24">
+    <aside className="sm:visible invisible flex flex-col h-screen w-24 fixed bg-white dark:bg-darkPrimary rounded-tr-[1.25rem] rounded-br-[1.25rem] pt-10 mr-24 dark:border-r dark:border-y dark:border-black">
       <Logo />
-      <hr className="w-[70px] mx-auto bg-stone-300 mt-7" />
+      <hr className="w-[70px] mx-auto border-stone-300 dark:border-zinc-900 mt-7" />
       <div
         id="sidebar__container"
         className="flex-1 flex flex-col gap-9 items-center mt-8 "
@@ -31,8 +31,8 @@ const Sidebar = ({}: SidebarProps) => {
                 size={28}
                 className={clsx(
                   isActive
-                    ? "text-sidebarBtn-active"
-                    : "text-sidebarBtn-inactive",
+                    ? "text-sidebarBtn-active dark:text-dark-sidebarBtn-active"
+                    : "text-sidebarBtn-inactive dark:text-dark-sidebarBtn-inactive",
                 )}
               />
             </Link>

@@ -9,6 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        dark: {
+          sidebarBtn: {
+            active: "white",
+            inactive: "#828282",
+          },
+        },
         sidebarBtn: {
           active: "#000000",
           inactive: "#CCCCCC",
@@ -30,6 +36,9 @@ const config: Config = {
         black: "#000000",
         white: "#FFFFFF",
         grey: "#F8F8F8",
+        darkPrimary: "#2C2C2E",
+        darkSecondary: "#1C1C1E",
+        darkTextSecondary: "#EBEBF5",
       },
     },
   },

@@ -83,7 +83,7 @@ const AuthForm = ({ mode }: AuthFormProps) => {
   }
 
   return (
-    <div className="bg-white rounded-lg p-5 shadow-lg">
+    <div className="bg-white dark:bg-darkSecondary rounded-lg p-5 shadow-lg">
       <h2 className="font-semibold">{content.header}</h2>
       <h4>{content.subheader}</h4>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4">
@@ -136,7 +136,7 @@ const AuthForm = ({ mode }: AuthFormProps) => {
         ) : null}
         <button
           type="submit"
-          className="bg-black text-white p-3 rounded-lg hover:bg-opacity-90"
+          className="bg-black text-white p-3 rounded-lg hover:bg-opacity-90 dark:bg-white dark:text-black"
         >
           {content.buttonText}
         </button>

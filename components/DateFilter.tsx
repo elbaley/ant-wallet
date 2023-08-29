@@ -49,7 +49,7 @@ const DateFilter = ({}: DateFilterProps) => {
       </button>
 
       <DatePicker
-        className="cursor-pointer p-3 rounded-lg text-sm focus-visible:outline-none focus-visible:border-0 focus-visible:m-0"
+        className="dark:bg-darkSecondary cursor-pointer p-3 rounded-lg text-sm focus-visible:outline-none focus-visible:border-0 focus-visible:m-0"
         selected={startDate}
         onChange={onChange}
         startDate={startDate}
@@ -80,7 +80,7 @@ const DateFilter = ({}: DateFilterProps) => {
 
 const MyContainer = ({ className, children }: CalendarContainerProps) => {
   return (
-    <div className="bg-white p-4 flex rounded-lg border-black border shadow-lg">
+    <div className="bg-white dark:bg-darkPrimary p-4 flex rounded-lg border-black border shadow-lg">
       <CalendarContainer className={className}>{children}</CalendarContainer>
     </div>
   );
