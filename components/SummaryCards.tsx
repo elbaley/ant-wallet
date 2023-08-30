@@ -48,7 +48,10 @@ const SummaryCards = ({}: SummaryCardsProps) => {
 
   return (
     <div className="flex gap-2 py-3 overflow-x-scroll">
-      <InfoCard name="Current Balance" amount={summaryValues.currentBalance} />
+      <InfoCard
+        name="Current Balance"
+        amount={summaryValues.currentBalance ? summaryValues.currentBalance : 0}
+      />
       <InfoCard name="Period Change" amount={summaryValues.periodChange} />
       <InfoCard name="Period Expenses" amount={summaryValues.periodExpenses} />
       <InfoCard name="Period Incomes" amount={summaryValues.periodIncomes} />

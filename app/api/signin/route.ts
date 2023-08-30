@@ -18,10 +18,13 @@ export async function POST(req: Request, res: Response) {
   const response = schema.safeParse(body);
 
   if (!response.success) {
-    return new Response("Invalid data!", {
-      status: 400,
-      statusText: "Invalid data",
-    });
+    return NextResponse.json(
+      {
+        error: { message: response.error.issues[0].message },
+        validation: response.error.issues,
+      },
+      { status: 400 },
+    );
   }
 
   const user = await db.user.findUnique({
@@ -31,10 +34,10 @@ export async function POST(req: Request, res: Response) {
   });
 
   if (!user) {
-    return new Response("Invalid login!", {
-      status: 401,
-      statusText: "Invalid login!",
-    });
+    return NextResponse.json(
+      { error: { message: "Invalid credentials!" } },
+      { status: 401 },
+    );
   }
 
   const isUser = await comparePasswords(response.data.password, user.password);
@@ -60,8 +63,9 @@ export async function POST(req: Request, res: Response) {
     );
     return response;
   } else {
-    return new Response("Signin error", {
-      status: 401,
-    });
+    return NextResponse.json(
+      { error: { message: "Invalid credentials!" } },
+      { status: 401 },
+    );
   }
 }

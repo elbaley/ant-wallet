@@ -41,9 +41,7 @@ const HomePage = async ({}: HomePageProps) => {
         <WalletCard key={wallet.id} name={wallet.name} amount={totalAmount} />
       ))}
       <Suspense fallback={<CtaSkeleton />}>
-        <Link href="/transactions">
-          <CallToAction />
-        </Link>
+        <CallToAction />
       </Suspense>
     </main>
   );

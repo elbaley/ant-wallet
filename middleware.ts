@@ -18,6 +18,7 @@ const verifyJWT = async (jwt: string) => {
 
 export default async function middleware(req: NextRequest, res: NextResponse) {
   const { pathname } = req.nextUrl;
+  const jwt = req.cookies.get(process.env.COOKIE_NAME as string);
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api/signin") ||
@@ -27,10 +28,16 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
     pathname.startsWith("/register") ||
     PUBLIC_FILE.test(pathname)
   ) {
+    // dont allow signed in users to access signin / register pages
+    if (
+      jwt &&
+      (pathname.startsWith("/signin") || pathname.startsWith("/register"))
+    ) {
+      req.nextUrl.pathname = "/home";
+      return NextResponse.redirect(req.nextUrl);
+    }
     return NextResponse.next();
   }
-
-  const jwt = req.cookies.get(process.env.COOKIE_NAME as string);
 
   if (!jwt) {
     req.nextUrl.pathname = "/signin";

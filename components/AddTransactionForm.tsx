@@ -2,15 +2,25 @@
 import { DetailedHTMLProps, InputHTMLAttributes, useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 import { TRANSACTION_TYPE, Transaction } from "@prisma/client";
-import { addTransaction } from "@/lib/api";
+import {
+  addTransaction,
+  deleteTransaction,
+  updateTransaction,
+} from "@/lib/api";
 import { delay } from "@/lib/delay";
 import { useTransactions } from "@/context/transactionsProvider";
 
 interface AddTransactionFormProps {
+  mode: "create" | "update";
   closeModal(): void;
+  transaction?: Transaction;
 }
 
-const AddTransactionForm = ({ closeModal }: AddTransactionFormProps) => {
+const AddTransactionForm = ({
+  mode,
+  closeModal,
+  transaction,
+}: AddTransactionFormProps) => {
   const { refetchTransactions } = useTransactions();
   const initialFormState: Partial<Transaction> = {
     type: "EXPENSE",
@@ -19,12 +29,16 @@ const AddTransactionForm = ({ closeModal }: AddTransactionFormProps) => {
     amount: 0,
     date: new Date(),
   };
-  const [formState, setFormState] = useState(initialFormState);
+  const [formState, setFormState] = useState(transaction || initialFormState);
   const [isLoading, setIsLoading] = useState(false);
   async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
     setIsLoading(true);
-    const result = await addTransaction(formState);
+    if (mode === "create") {
+      await addTransaction(formState);
+    } else {
+      await updateTransaction(formState);
+    }
     await delay(800);
     setIsLoading(false);
     closeModal();
@@ -71,14 +85,20 @@ const AddTransactionForm = ({ closeModal }: AddTransactionFormProps) => {
       />
       <TransactionInput
         type="number"
-        min="1"
         label="Amount"
         id="transaction-amount"
-        value={formState.amount}
+        value={
+          formState.type === "EXPENSE"
+            ? Math.abs(formState.amount as number) * -1
+            : Math.abs(formState.amount as number)
+        }
         onChange={(e) =>
           setFormState((old) => ({
             ...old,
-            amount: e.target.valueAsNumber,
+            amount:
+              formState.type === "EXPENSE"
+                ? Math.abs(e.target.valueAsNumber) * -1
+                : Math.abs(e.target.valueAsNumber),
           }))
         }
       />
@@ -105,22 +125,49 @@ const AddTransactionForm = ({ closeModal }: AddTransactionFormProps) => {
         }
         value={formState.description!}
       />
-      <button
-        type="submit"
-        className="mt-4 inline-flex justify-center rounded-md border border-transparent bg-blue-100 dark:bg-indigo-500 px-4 py-2 text-sm font-medium text-blue-900 dark:text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-      >
-        {isLoading ? (
-          <div
-            className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 dark:text-white rounded-full"
-            role="status"
-            aria-label="loading"
+      <div className="flex">
+        <button
+          type="submit"
+          className="mt-4 inline-flex justify-center rounded-md border border-transparent bg-blue-100 dark:bg-indigo-500 px-4 py-2 text-sm font-medium text-blue-900 dark:text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        >
+          {isLoading ? (
+            <div
+              className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 dark:text-white rounded-full"
+              role="status"
+              aria-label="loading"
+            >
+              <span className="sr-only">Loading...</span>
+            </div>
+          ) : (
+            "Add"
+          )}
+        </button>
+        {mode === "update" ? (
+          <button
+            className="ml-auto mt-4 inline-flex justify-center rounded-md border border-transparent bg-red-500 dark:bg-red-500 px-4 py-2 text-sm font-medium text-white dark:text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            onClick={async () => {
+              if (transaction) {
+                await deleteTransaction(transaction);
+                closeModal();
+                refetchTransactions();
+              }
+            }}
+            type="button"
           >
-            <span className="sr-only">Loading...</span>
-          </div>
-        ) : (
-          "Add"
-        )}
-      </button>
+            {isLoading ? (
+              <div
+                className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 dark:text-white rounded-full"
+                role="status"
+                aria-label="loading"
+              >
+                <span className="sr-only">Loading...</span>
+              </div>
+            ) : (
+              "Delete"
+            )}
+          </button>
+        ) : null}
+      </div>
     </form>
   );
 };

@@ -1,7 +1,8 @@
-import { Transaction } from "@prisma/client";
+import { Transaction as TTransaction } from "@prisma/client";
 import { format } from "date-fns";
+import Transaction from "./Transaction";
 interface TransactionMonthProps {
-  transactions: Transaction[];
+  transactions: TTransaction[];
 }
 
 function formatDate(date: Date) {
@@ -19,29 +20,12 @@ const TransactionMonth = ({ transactions }: TransactionMonthProps) => {
       {transactions.map((transaction) => {
         const { month, day } = formatDate(transaction.date);
         return (
-          <div
+          <Transaction
             key={transaction.id}
-            className="bg-white dark:bg-darkSecondary rounded-lg text-xl px-4 py-4 flex gap-3 mt-2 items-center shadow-sm"
-          >
-            <div className="block rounded-t  bg-white dark:bg-darkSecondary text-center w-16 h-16">
-              <div className="text-sm bg-red-500 text-white py-1">{month}</div>
-              <div className="pt-1 border-l border-r border-b dark:border-black">
-                <span className="text-2xl font-bold w-[2ch]">{day}</span>
-              </div>
-            </div>
-            <span>{transaction.category}</span>
-            <span>{transaction.description}</span>
-            <span
-              className={`font-bold ml-auto ${
-                transaction.type === "EXPENSE"
-                  ? "text-actions-danger"
-                  : "text-actions-success"
-              }`}
-            >
-              {transaction.type === "EXPENSE" ? "-" : "+"}$
-              {Math.abs(transaction.amount)}
-            </span>
-          </div>
+            transaction={transaction}
+            month={month}
+            day={day.toString()}
+          />
         );
       })}
     </div>

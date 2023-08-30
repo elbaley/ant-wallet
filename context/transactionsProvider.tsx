@@ -48,7 +48,7 @@ export const TransactionsContextProvider = ({
   const [currencySymbol, setCurrencySymbol] = useState<TCurrencySymbol>("₺");
   const [transactions, setTransactions] = useState<TransactionsState>({
     transactions: [],
-    totalAmount: null,
+    totalAmount: 0,
     from: fromFilter,
     to: toFilter,
   });

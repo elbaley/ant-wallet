@@ -25,9 +25,7 @@ export default function RootLayout({
           dmSans.className + " bg-grey dark:bg-darkPrimary dark:text-white"
         }
       >
-        <UserContextProvider>
-          <TransactionsContextProvider>{children}</TransactionsContextProvider>
-        </UserContextProvider>
+        <UserContextProvider>{children}</UserContextProvider>
       </body>
     </html>
   );

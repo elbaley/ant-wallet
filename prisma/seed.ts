@@ -82,6 +82,7 @@ async function main() {
         walletId: wallet.id,
         ownerId: user.id,
         date: getRandomDate(), // RANDOM DATE
+        description: "",
       };
 
       return randomTransaction;

@@ -15,15 +15,7 @@ const WalletCard = ({ name, amount }: WalletCardProps) => {
       <div>
         <h2>{name}</h2>
         <h4>Cash</h4>
-        {amount ? (
-          <h1>
-            {amount < 0 && "-"}
-            {currencySymbol}
-            {Math.abs(amount)}
-          </h1>
-        ) : (
-          <div>Loading...</div>
-        )}
+        <h1>{amount ? currencySymbol + amount : currencySymbol + 0}</h1>
       </div>
     </div>
   );

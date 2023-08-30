@@ -49,6 +49,7 @@ const DateFilter = ({}: DateFilterProps) => {
       </button>
 
       <DatePicker
+        preventOpenOnFocus
         className="dark:bg-darkSecondary cursor-pointer p-3 rounded-lg text-sm focus-visible:outline-none focus-visible:border-0 focus-visible:m-0"
         selected={startDate}
         onChange={onChange}

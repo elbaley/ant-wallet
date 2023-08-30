@@ -25,7 +25,7 @@ const Sidebar = ({}: SidebarProps) => {
             <Link
               key={link.href}
               href={link.href}
-              className={`${isSettings && "mt-auto mb-8 "}`}
+              className={`cursor-pointer ${isSettings && "mt-auto mb-8 "}`}
             >
               <Icon
                 size={28}

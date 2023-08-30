@@ -2,7 +2,6 @@
 import Input from "@/components/Input";
 import { useUser } from "@/context/authProvider";
 import { register, signin, updateUser } from "@/lib/api";
-import { User } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -36,6 +35,7 @@ const authFormContents = {
 };
 
 const AuthForm = ({ mode }: AuthFormProps) => {
+  const [errorMessage, setErrorMessage] = useState("");
   const { user, setUser } = useUser();
   const router = useRouter();
   const content = authFormContents[mode];
@@ -46,7 +46,7 @@ const AuthForm = ({ mode }: AuthFormProps) => {
     password: "",
   };
   const [formState, setFormState] = useState(
-    { ...user, password: "" } || initial,
+    { ...user, password: "", email: user?.email ? user.email : "" } || initial,
   );
 
   async function handleSubmit(e: React.SyntheticEvent) {
@@ -56,6 +56,7 @@ const AuthForm = ({ mode }: AuthFormProps) => {
       await register(formState)
         .then((user) => {
           setUser(user);
+          router.replace("/home");
         })
         .catch((err) => {
           console.log(err);
@@ -64,14 +65,20 @@ const AuthForm = ({ mode }: AuthFormProps) => {
       await signin(formState)
         .then((user) => {
           setUser(user);
+          router.replace("/home");
+          console.log(user);
         })
         .catch((err) => {
-          console.log(err);
+          setErrorMessage(err.message);
+          setTimeout(() => {
+            setErrorMessage("");
+          }, 3000);
         });
     } else {
       await updateUser(formState)
         .then((user) => {
           setUser(user);
+          router.push("/profile");
         })
         .catch((err) => {
           console.log(err);
@@ -79,7 +86,6 @@ const AuthForm = ({ mode }: AuthFormProps) => {
     }
 
     setFormState(initial);
-    router.replace("/home");
   }
 
   return (
@@ -132,6 +138,9 @@ const AuthForm = ({ mode }: AuthFormProps) => {
             <Link href={content.linkUrl}>
               <span>{content.linkText}</span>
             </Link>
+            {errorMessage.length > 0 ? (
+              <div className="text-red-500 transition-all">{errorMessage}</div>
+            ) : null}
           </div>
         ) : null}
         <button
