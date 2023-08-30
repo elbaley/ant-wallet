@@ -3,6 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import { TransactionsContextProvider } from "@/context/transactionsProvider";
+import { ThemeProvider } from "./theme-provider";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -25,7 +27,11 @@ export default function RootLayout({
           dmSans.className + " bg-grey dark:bg-darkPrimary dark:text-white"
         }
       >
-        <UserContextProvider>{children}</UserContextProvider>
+        <UserContextProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
+        </UserContextProvider>
       </body>
     </html>
   );
