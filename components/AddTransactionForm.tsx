@@ -39,7 +39,7 @@ const AddTransactionForm = ({
     } else {
       await updateTransaction(formState);
     }
-    await delay(800);
+    // await delay(800);
     setIsLoading(false);
     closeModal();
     refetchTransactions();

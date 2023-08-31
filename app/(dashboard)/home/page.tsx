@@ -2,16 +2,14 @@ interface HomePageProps {}
 import CallToAction from "@/components/CallToAction";
 import CtaSkeleton from "@/components/CtaSkeleton";
 import WalletCard from "@/components/WalletCard";
-import { getTransactionsData } from "@/lib/api";
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { delay } from "@/lib/delay";
 import { cookies } from "next/headers";
-import Link from "next/link";
 import { Suspense } from "react";
 
 const getData = async () => {
-  await delay(500);
+  // await delay(15000);
   const user = await getUserFromCookie(cookies());
   if (!user) return {};
   const wallets = await db.wallet.findMany({

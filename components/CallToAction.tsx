@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 
 const getData = async () => {
-  await delay(700);
+  // await delay(700);
   const user = await getUserFromCookie(cookies());
   return user;
 };

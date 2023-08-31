@@ -5,7 +5,7 @@ import AddModal from "@/components/AddModal";
 
 interface TransactionsPageProps {}
 
-const TransactionsPage = ({}: TransactionsPageProps) => {
+const TransactionsPage = async ({}: TransactionsPageProps) => {
   return (
     <main className="px-3 sm:pl-10 ">
       <div className="flex flex-col sm:flex-row justify-between sm:pr-5">
