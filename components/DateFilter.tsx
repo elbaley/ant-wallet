@@ -35,13 +35,19 @@ const DateFilter = ({}: DateFilterProps) => {
     <div className="flex flex-wrap xs:flex-nowrap gap-[2px] sm:gap-3 items-center sm:mr-5 z-10">
       <button
         onClick={() => {
-          setStartDate(addMonths(startDate, -1));
-          setEndDate(addMonths(endDate, -1));
+          const newStartDate = addMonths(startDate, -1);
+          const lastDayOfNewMonth = new Date(
+            newStartDate.getFullYear(),
+            newStartDate.getMonth() + 1,
+            0,
+          );
+          setStartDate(newStartDate);
+          setEndDate(lastDayOfNewMonth);
           setTransactions((old) => {
             return {
               ...old,
-              from: addMonths(new Date(transactions.from), -1).toISOString(),
-              to: addMonths(new Date(transactions.to), -1).toISOString(),
+              from: newStartDate.toISOString(),
+              to: lastDayOfNewMonth.toISOString(),
             };
           });
         }}
