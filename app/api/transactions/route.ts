@@ -18,7 +18,7 @@ export async function GET(req: NextRequest, res: Response) {
         to && {
           date: {
             gte: new Date(from).toISOString(),
-            lte: new Date(to).toISOString(),
+            lte: new Date(new Date(to).setUTCHours(23, 59)).toISOString(),
           },
         }),
     },
