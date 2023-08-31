@@ -13,6 +13,33 @@ const config: Config = {
       ...defaultTheme.screens,
     },
     extend: {
+      animation: {
+        "bounce-text": "bounceText 2s ease-in ",
+        "bounce-text-gradient":
+          "bounceText 2s ease-in , bounceTextGradient 2s linear infinite",
+      },
+      keyframes: {
+        slide: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(calc(-150px * 7))" },
+        },
+        bounceText: {
+          "0%, 20%, 50%, 80%, 100%": { transform: "translateY(0)" },
+          "40%": { transform: "translateY(-60px)" },
+          "60%": { transform: "translateY(-30px)" },
+        },
+        bounceTextGradient: {
+          "0%,100%": {
+            backgroundSize: "200% 200%",
+            backgroundPosition: "left center",
+          },
+          "50%": {
+            backgroundSize: "200% 200%",
+            backgroundPosition: "right center",
+          },
+        },
+      },
+
       colors: {
         dark: {
           sidebarBtn: {
@@ -47,7 +74,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-bg-patterns")],
   darkMode: "class",
 };
 export default config;

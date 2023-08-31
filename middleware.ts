@@ -25,13 +25,16 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
     pathname.startsWith("/api/register") ||
     pathname.startsWith("/static") ||
     pathname.startsWith("/signin") ||
+    pathname === "/" ||
     pathname.startsWith("/register") ||
     PUBLIC_FILE.test(pathname)
   ) {
     // dont allow signed in users to access signin / register pages
     if (
       jwt &&
-      (pathname.startsWith("/signin") || pathname.startsWith("/register"))
+      (pathname.startsWith("/signin") ||
+        pathname.startsWith("/register") ||
+        pathname === "/")
     ) {
       req.nextUrl.pathname = "/home";
       return NextResponse.redirect(req.nextUrl);
