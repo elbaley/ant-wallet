@@ -35,7 +35,7 @@ const HomePage = async ({}: HomePageProps) => {
   const { wallets, totalAmount } = await getData();
 
   return (
-    <main className="sm:pl-10 pl-4">
+    <main className="sm:pl-10 px-2">
       <h1 className="pb-3">Wallet</h1>
       {wallets?.map((wallet) => (
         <WalletCard key={wallet.id} name={wallet.name} amount={totalAmount} />

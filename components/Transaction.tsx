@@ -31,7 +31,7 @@ const Transaction = ({ transaction, month, day }: TransactionProps) => {
         role="button"
         tabIndex={0}
         onClick={openModal}
-        className="hover:bg-opacity-20 cursor-pointer bg-white dark:bg-darkSecondary rounded-lg text-xl px-4 py-4 flex gap-3 mt-2 items-center shadow-sm"
+        className="hover:bg-opacity-20 cursor-pointer bg-white dark:bg-darkSecondary rounded-lg text-xl px-4 py-4 flex flex-wrap gap-3 mt-2 items-center shadow-sm"
       >
         <div className="block rounded-t  bg-white dark:bg-darkSecondary text-center w-16 h-16">
           <div className="text-sm bg-red-500 text-white py-1">{month}</div>

@@ -10,7 +10,7 @@ const Sidebar = ({}: SidebarProps) => {
   const pathname = usePathname();
 
   return (
-    <aside className="sm:visible invisible flex flex-col h-screen w-24 fixed bg-white dark:bg-darkPrimary rounded-tr-[1.25rem] rounded-br-[1.25rem] pt-10 mr-24 dark:border-r dark:border-y dark:border-black">
+    <aside className="sm:visible invisible flex flex-col h-screen w-24 fixed bg-white dark:bg-darkPrimary rounded-tr-[1.25rem] rounded-br-[1.25rem] pt-10 mr-24 dark:border-r dark:border-y dark:border-black overflow-scroll">
       <Logo />
       <hr className="w-[70px] mx-auto border-stone-300 dark:border-zinc-900 mt-7" />
       <div

@@ -10,7 +10,7 @@ interface WalletCardProps {
 const WalletCard = ({ name, amount }: WalletCardProps) => {
   const { currencySymbol } = useTransactions();
   return (
-    <div className="bg-white dark:bg-darkSecondary max-w-md rounded-xl shadow-lg pt-8 pl-8 pb-5 flex gap-4">
+    <div className="bg-white dark:bg-darkSecondary max-w-md rounded-xl shadow-lg pt-8 pl-2 xs:pl-8 pb-5 flex gap-4">
       <IoWallet size={55} className="text-actions-warning" />
       <div>
         <h2>{name}</h2>

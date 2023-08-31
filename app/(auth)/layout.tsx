@@ -4,7 +4,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="pt-7 pl-7 min-h-screen">
+    <div className="pt-7 px-6 min-h-screen">
       <div className="logo flex items-center gap-1">
         <img
           className="h-9 aspect-square hover:opacity-80 "

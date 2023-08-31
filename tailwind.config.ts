@@ -1,3 +1,4 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -7,6 +8,10 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      xs: "400px",
+      ...defaultTheme.screens,
+    },
     extend: {
       colors: {
         dark: {

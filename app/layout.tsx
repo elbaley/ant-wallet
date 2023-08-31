@@ -28,7 +28,7 @@ export default function RootLayout({
         }
       >
         <UserContextProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="light">
             {children}
           </ThemeProvider>
         </UserContextProvider>

@@ -7,6 +7,7 @@ import DatePicker, {
   CalendarContainerProps,
 } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 interface DateFilterProps {}
 
 const DateFilter = ({}: DateFilterProps) => {
@@ -31,7 +32,7 @@ const DateFilter = ({}: DateFilterProps) => {
     setEndDate(end);
   };
   return (
-    <div className="flex gap-3 items-center mr-5 z-10">
+    <div className="flex flex-wrap xs:flex-nowrap gap-[2px] sm:gap-3 items-center sm:mr-5 z-10">
       <button
         onClick={() => {
           setStartDate(addMonths(startDate, -1));
@@ -45,7 +46,7 @@ const DateFilter = ({}: DateFilterProps) => {
           });
         }}
       >
-        Previous Month
+        <IoChevronBack />
       </button>
 
       <DatePicker
@@ -73,7 +74,7 @@ const DateFilter = ({}: DateFilterProps) => {
           });
         }}
       >
-        Next Month
+        <IoChevronForward />
       </button>
     </div>
   );

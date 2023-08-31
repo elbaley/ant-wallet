@@ -8,7 +8,7 @@ interface TransactionsPageProps {}
 const TransactionsPage = ({}: TransactionsPageProps) => {
   return (
     <main className="px-3 sm:pl-10 ">
-      <div className="flex flex-col sm:flex-row justify-between pr-5">
+      <div className="flex flex-col sm:flex-row justify-between sm:pr-5">
         <h1 className="pb-3">Transactions</h1>
         <DateFilter />
       </div>
