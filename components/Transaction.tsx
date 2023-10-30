@@ -11,6 +11,7 @@ interface TransactionProps {
 
 const Transaction = ({ transaction, month, day }: TransactionProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  // test for issue
   function closeModal() {
     setIsOpen(false);
   }
@@ -28,15 +29,15 @@ const Transaction = ({ transaction, month, day }: TransactionProps) => {
             openModal();
           }
         }}
-        role="button"
+        role='button'
         tabIndex={0}
         onClick={openModal}
-        className="hover:bg-opacity-20 cursor-pointer bg-white dark:bg-darkSecondary rounded-lg text-xl px-4 py-4 flex flex-wrap gap-3 mt-2 items-center shadow-sm"
+        className='hover:bg-opacity-20 cursor-pointer bg-white dark:bg-darkSecondary rounded-lg text-xl px-4 py-4 flex flex-wrap gap-3 mt-2 items-center shadow-sm'
       >
-        <div className="block rounded-t  bg-white dark:bg-darkSecondary text-center w-16 h-16">
-          <div className="text-sm bg-red-500 text-white py-1">{month}</div>
-          <div className="pt-1 border-l border-r border-b dark:border-black">
-            <span className="text-2xl font-bold w-[2ch]">{day}</span>
+        <div className='block rounded-t  bg-white dark:bg-darkSecondary text-center w-16 h-16'>
+          <div className='text-sm bg-red-500 text-white py-1'>{month}</div>
+          <div className='pt-1 border-l border-r border-b dark:border-black'>
+            <span className='text-2xl font-bold w-[2ch]'>{day}</span>
           </div>
         </div>
         <span>{transaction.category}</span>
@@ -52,9 +53,9 @@ const Transaction = ({ transaction, month, day }: TransactionProps) => {
           {Math.abs(transaction.amount)}
         </span>
       </div>
-      <Modal title="Edit transaction" closeModal={closeModal} isOpen={isOpen}>
+      <Modal title='Edit transaction' closeModal={closeModal} isOpen={isOpen}>
         <AddTransactionForm
-          mode="update"
+          mode='update'
           transaction={{ ...transaction, date: new Date(transaction.date) }}
           closeModal={closeModal}
         />
